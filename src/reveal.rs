@@ -64,7 +64,7 @@ fn find_db_path() -> Result<PathBuf, Error> {
             .parent()
             .and_then(|p| p.parent())
             .map(|p| p.to_path_buf())
-            .unwrap_or_default(), // for cargo run
+            .unwrap_or_default(), // for cargo run without target
         home_dir().unwrap_or_default(),
     ];
 

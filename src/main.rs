@@ -50,11 +50,14 @@ fn init_logger() -> Result<(), Error> {
 
 fn run() -> Result<(), Error> {
     let args = Args::parse();
-
-    info!("Ready to process file: {:?}", args.input);
+    let version = format!("v{}", env!("CARGO_PKG_VERSION"));
+    info!(
+        "eye³ {} started, processing file: {:?}",
+        version, args.input
+    );
     notify!(
         NotifyType::Info,
-        "准备处理文件：{:?}，请稍候···",
+        "开始处理文件：{:?}，请稍候···",
         args.input
     );
 
