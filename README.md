@@ -2,9 +2,13 @@
 
 一键式提取被 [隐写者](https://github.com/cenglin123/SteganographierGUI) 藏在视频里的文件
 
-## 💡 Usage
+## ⭐ Features
 
-开箱即用，无需操作，无需界面，仅有桌面通知
+- 开箱即用，无多余操作
+- 无感运行，完成后显示桌面通知
+- 跨平台，支持 64 位 Windows 和 Linux
+
+## 💡 Usage
 
 完整组件包括：
 
