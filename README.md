@@ -57,9 +57,9 @@ Options:
 
 ## 📝 Todo
 
-- [ ] 目前仅支持处理 mp4 文件，暂未测试 mkv 文件
-- [ ] 使用的 [zip](https://github.com/zip-rs/zip2) 库在通过 `ZipArchive::new()` 读入待处理文件时花费了较长时间（且偶发性剧增），需要优化
+- [x] 完全支持隐写者的 mp4 和 mkv 文件
 - [ ] 实际上也支持普通的未加密或使用 AES-256 加密的 zip 文件，但仍不支持 7z、rar 等压缩格式
+- [ ] 使用的 [zip](https://github.com/zip-rs/zip2) 库在通过 `ZipArchive::new()` 读入大文件时耗时较长，且偶发性剧增
 
 ## ❤️ Thanks
 
