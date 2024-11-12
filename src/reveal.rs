@@ -1,6 +1,5 @@
 use home::home_dir;
 use log::info;
-use std::borrow::Cow;
 use std::env;
 use std::fs::File;
 use std::io::{self, BufRead, BufReader, BufWriter, Write};
@@ -13,7 +12,6 @@ use crate::{notify, notify::NotifyType};
 
 pub fn reveal_plain(file: &mut ZipArchive<File>, dir: &Path) -> Result<(), Error> {
     file.extract(dir)?;
-    info!("name 1: {:?}", file.name_for_index(0));
     info!("Reveal steganography successfully!");
     notify!(NotifyType::Ok, "解除隐写成功！");
     Ok(())
@@ -31,17 +29,17 @@ pub fn reveal_cipher(
             save_zip(&mut zip, output)
         }
         None => {
-            let db_path: Cow<Path> = match db {
-                Some(db) => Cow::Borrowed(db),
-                None => Cow::Owned(find_db_path()?),
+            let db_path = match db {
+                Some(db) => db,
+                None => &find_db_path()?,
             };
-            let mut pwlist = build_pwlist(&db_path)?;
+            let mut pwlist = build_pwlist(db_path)?;
             for (freq, pw) in pwlist.iter_mut() {
                 match file.by_index_decrypt(0, pw.as_bytes()) {
                     Ok(mut zip) => {
                         save_zip(&mut zip, output)?;
                         *freq += 1;
-                        update_db(&db_path, &mut pwlist)?;
+                        update_db(db_path, &mut pwlist)?;
                         return Ok(());
                     }
                     Err(ZipError::InvalidPassword) => (),

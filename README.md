@@ -1,12 +1,12 @@
 # eye³
 
-一键式提取被 [隐写者](https://github.com/cenglin123/SteganographierGUI) 藏在视频里的文件
+睁开第三只眼 👁 轻取[隐写](https://github.com/cenglin123/SteganographierGUI)文件
 
 ## ⭐ Features
 
 - 开箱即用，无多余操作
 - 无感运行，完成后显示桌面通知
-- 跨平台，支持 64 位 Windows 和 Linux
+- 跨平台，支持 x86_64 架构 Windows 和 Linux
 
 ## 💡 Usage
 
@@ -59,6 +59,7 @@ Options:
 
 - [ ] 目前仅支持处理 mp4 文件，暂未测试 mkv 文件
 - [ ] 使用的 [zip](https://github.com/zip-rs/zip2) 库在通过 `ZipArchive::new()` 读入待处理文件时花费了较长时间（且偶发性剧增），需要优化
+- [ ] 实际上也支持普通的未加密或使用 AES-256 加密的 zip 文件，但仍不支持 7z、rar 等压缩格式
 
 ## ❤️ Thanks
 
