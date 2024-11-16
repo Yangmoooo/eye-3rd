@@ -579,7 +579,7 @@ dependencies = [
 
 [[package]]
 name = "eye3rd"
-version = "1.0.1"
+version = "2.0.0"
 dependencies = [
  "clap",
  "home",
