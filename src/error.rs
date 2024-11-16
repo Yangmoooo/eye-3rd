@@ -6,12 +6,16 @@ pub enum EyeError {
     Io(#[from] std::io::Error),
     #[error("{0}")]
     Zip(#[from] zip::result::ZipError),
-    #[error("日志初始化失败啦")]
+    #[error("日志初始化失败")]
     Log(#[from] log::SetLoggerError),
-    #[error("没有找到密码库呢")]
-    PasswordDbNotFound,
-    #[error("密码库中好像没有匹配的项目噢")]
-    NoMatchedPassword,
     #[error("不支持的文件格式")]
     UnsupportedFormat,
+    #[error("未找到密码库")]
+    PasswordDbNotFound,
+    #[error("密码库中无匹配项目")]
+    NoMatchedPassword,
+    #[error("未找到隐写文件")]
+    NoSteganographyFile,
+    #[error("无效路径")]
+    InvalidPath,
 }

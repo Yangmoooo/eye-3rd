@@ -6,15 +6,12 @@ use std::path::{Path, PathBuf};
 
 use crate::cli::Args;
 use crate::error::EyeError as Error;
-use crate::format::{
-    zip::extract_zip,
-    Format::{self, *},
-};
+use crate::format::{zip::extract_zip, Format};
 
-pub fn extract(format: Format, args: &Args) -> Result<(), Error> {
+pub fn extract(format: Format, args: &Args) -> Result<PathBuf, Error> {
     let (input, pw, db) = (&args.input, args.pw.as_deref(), args.db.as_deref());
     match format {
-        Mp4 | Mkv | Zip => extract_zip(input, pw, db),
+        Format::Mp4 | Format::Mkv | Format::Zip => extract_zip(input, pw, db),
         _ => Err(Error::UnsupportedFormat),
     }
 }
@@ -30,7 +27,7 @@ pub fn find_db() -> Result<PathBuf, Error> {
             .parent()
             .and_then(|p| p.parent())
             .map(|p| p.to_path_buf())
-            .unwrap_or_default(), // for cargo run without target
+            .unwrap_or_default(), // 在未指定 rust target 的 cargo 项目中使用
         home_dir().unwrap_or_default(),
     ];
 
